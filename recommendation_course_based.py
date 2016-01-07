@@ -32,37 +32,6 @@ course_reviews={'Alex': {'Web Analytics': 2.5, 'Data Mining & Knowledge Discover
 
 'Gary': {'Data Mining & Knowledge Discovery':4.5,'Social Network Analysis':1.0,'Data Visualization':4.0}}
 
-#course_reviews={'Keyur Doshi': {'Web Analytics': 3.0, 'Data Mining & Knowledge Discovery': 3.5,
-#  'Advanced Algorithm': 1.5},
-#
-#'John Doe': {'Data Mining - II': 3.0, 'Multivariate Analysis': 3.5,
-# 'Experimental Design': 1.5, 'Web Analytics': 5.0, 'Applied Analytics in the World of Big Data': 3.0,
-# 'Statistical Learning': 3.5},
-# 
-#'Yilin Wei': {'Data Visualization': 2.5, 'Data Mining & Knowledge Discovery': 2.5,
-# 'Social Network Analysis': 3.5, 'Multivariate Analysis': 4.0},
-#
-#'Alek Liskov': {'Big Data Seminar': 3.5, 'Data Visualization': 3.0,
-# 'Database Management': 4.5, 'Process Optimization': 3.0,
-# 'Statistical Learning': 2.5},
-#
-#'Aakash Chawla': {'Database Management': 3.5, 'Data Mining & Knowledge Discovery': 4.0,
-# 'Experimental Design': 2.0, 'Multivariate Analysis': 3.5, 
-# 'Applied Analytics in the World of Big Data': 2.5},
-#
-#'Dami Kazeem': {'Data Visualization': 3.5, 'Social Network Analysis': 2.0,
-# 'Web Analytics': 2.5, 'Data Mining - II': 4.0, 'Natural Language Processing': 3.5},
-#
-#'Bhargavi Gutta': {'Web Analytics':3.5,'Applied Analytics in the World of Big Data':2.0,'Multivariate Analysis':3.5}}
-#
-#
-#LITW - WA
-#SOAP - DMKD
-#JML - SL
-#SMR - DV
-#YMD - SNA
-#TNl - DM-2
-
 # In[1]:
 # Returns a distance-based similarity score for student1 and student2
 def sim_distance(prefs,student1,student2):
