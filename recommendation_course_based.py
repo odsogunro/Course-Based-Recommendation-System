@@ -4,17 +4,29 @@ Created on Tue Jan 05 19:40:03 2016
 
 @author: keyur
 """
+# Anticipated issue:
+# Sparse Matrix Challenges (https://en.wikipedia.org/wiki/Collaborative_filtering)
+# Cold Start issue (https://en.wikipedia.org/wiki/Cold_start)
+
 from math import sqrt
+
 
 # In[2]:
 # A dictionary of course_reviews and their ratings of a small set of courses
+# Entire List of course:
+#    Web Analytics
+#    Data Mining & Knowledge Discovery
+#    Statistical Learning
+#    Data Visualization
+#    Social Network Analysis
+#    Data Mining - II
+
 course_reviews={'Alex': {'Web Analytics': 2.5, 'Data Mining & Knowledge Discovery': 3.5,
  'Statistical Learning': 3.0, 'Data Visualization': 3.5, 'Social Network Analysis': 2.5,
  'Data Mining - II': 3.0},
  
 'Bob': {'Web Analytics': 3.0, 'Data Mining & Knowledge Discovery': 3.5,
- 'Statistical Learning': 1.5, 'Data Visualization': 5.0, 'Data Mining - II': 3.0,
- 'Social Network Analysis': 3.5},
+ 'Statistical Learning': 1.5, 'Data Visualization': 5.0, 'Social Network Analysis': 3.5},
 
 'Charlie': {'Web Analytics': 2.5, 'Data Mining & Knowledge Discovery': 3.0,
  'Data Visualization': 3.5, 'Data Mining - II': 4.0},
@@ -48,6 +60,9 @@ def sim_distance(prefs,student1,student2):
   sum_of_squares=sum([pow(prefs[student1][item]-prefs[student2][item],2)
                       for item in si])
 
+  # Above function calculates the distance which will be smaller for people who are more similar.
+  # However, you need a function that gives higher values for people who are similar. 
+  # This can be done by adding 1 to the function (so you don’t get a division-by-zero error) and inverting it:
   return 1/(1+sqrt(sum_of_squares))
   
 # sqrt(pow(3.5-4,2))  
@@ -92,7 +107,7 @@ def sim_pearson(prefs,student1,student2):
 # In[3]:
 # Returns the best matches for student from the prefs dictionary.
 # Number of results and similarity function are optional params.
-def topMatches(prefs,student,n=5,similarity=sim_pearson):
+def topMatches(prefs,student,n=5,similarity=sim_distance): #sim_pearson can be used
   scores=[(similarity(prefs,student,other),other)
                   for other in prefs if other!=student]
 
@@ -106,7 +121,7 @@ def topMatches(prefs,student,n=5,similarity=sim_pearson):
 # In[4]:
 # Gets recommendations for a student by using a weighted average
 # of every other student's rankings
-def getRecommendations(prefs,student,similarity=sim_pearson):
+def getRecommendations(prefs,student,similarity=sim_distance): #sim_pearson can be used
   totals={}
   simSums={}
   for other in prefs:
@@ -136,7 +151,7 @@ def getRecommendations(prefs,student,similarity=sim_pearson):
   return rankings
 
 # Which course should I take next
-# getRecommendations(course_reviews,'Gary')
+# getRecommendations(course_reviews,'Web Analytics')
 # In[5]:
 # Transform preference
 def transformPrefs(prefs):
@@ -174,6 +189,9 @@ def calculateSimilarItems(prefs,n=10):
 
 itemsim=calculateSimilarItems(course_reviews)
 
+# Courses similar to each course
+# itemsimim
+
 # In[7]:
 def getRecommendedItems(prefs,itemMatch,student):
   userRatings=prefs[student]
@@ -205,4 +223,15 @@ def getRecommendedItems(prefs,itemMatch,student):
   rankings.reverse(  )
   return rankings
 
-# getRecommendedItems(course_reviews,itemsim,'Keyur Doshi')
+# getRecommendedItems(course_reviews,itemsim,'Gary')
+
+
+# In[]: Compute the like minded person for a given person -- topMatches(course_reviews,'Gary')
+
+# Get recommendation to the poeple who have not taken this course so far:
+ # rev_reviews=transformPrefs(course_reviews)
+ # topMatches(rev_reviews,'Web Analytics')
+ # getRecommendations(rev_reviews,'Web Analytics') 
+
+# Get the list of course recommendation of the person:
+# getRecommendedItems(course_reviews,itemsim,'Gary')
