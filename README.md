@@ -6,6 +6,12 @@ Course Based Recommendation System to recommend courses based on students prefer
 https://en.wikipedia.org/wiki/Recommender_system
 ```
 
+### git 
+```
+# fork - https://goo.gl/F0a8mG
+# pull - https://goo.gl/Kmdee
+```
+
 ### vagrant, docker, ...
 
 * problem
